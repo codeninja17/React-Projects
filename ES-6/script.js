@@ -231,5 +231,139 @@ const data = [
     console.log(splitFuncn(publicationDate));
 
 
-    // 
+    // 5. 
+
+
+    // 6. Array : map, filter, reduce, sort
+
+    // map
+    const arr = [1,3,4,6,8,9];
+
+    const doubledArr = arr.map((num) => num * 2)
+
+    console.log(doubledArr);
+
+    const books = getBooks();
+
+    const bookTitles = books.map((book) => book.title);
+
+    console.log(bookTitles);
+
+    const updatedBookSeller = books.map((book) => ({...book, seller: 'Amazon'}));
+
+    console.log(updatedBookSeller);
+
+    const essentialData = books.map((book) => {
+        return {
+            pages: book.pages,
+            seller: 'Flipkart'
+        }
+    });
+
+    console.log(essentialData);
+
+    const essentialData1 = books.map((book) => ({
+            pages: book.pages,
+            seller: 'Flipkart'
+    }));
+
+    console.log(essentialData1);
+    
+    // filter
+    const booksWithPagesGreaterThanThousand = books.filter((book) =>  book.pages > 1000);
+
+    console.log(booksWithPagesGreaterThanThousand);
+
+    const booksWithFantasyGenre = books.filter((book) => book.genres.includes('fantasy') && book.pages < 1000);
+
+    console.log(booksWithFantasyGenre);
+
+    const booksWithFantasyGenre1 = books.filter((book) => book.genres.includes('fantasy'))
+                                       .filter((book) => book.pages > 1000);
+    console.log(booksWithFantasyGenre1);
+
+    const bookTitlesWithPageLessThanThousand = books.filter((book) => book.pages < 1000)
+                                                    .map((book) => book.title);
+    
+    console.log(bookTitlesWithPageLessThanThousand);
+
+    // reduce
+
+    const sumOfPages = books.reduce((sum, book) => sum + book.pages, 0);
+    console.log(sumOfPages);
+
+    // sort
+
+    /*
+        using sort on an array, sorts the original array as well
+
+        to avoid this, use slice() , which creates a copy of the array and sorts it
+    */
+
+    const arr_1 = [1,5,3,2,4];
+
+    const arr_2 = arr_1.sort((a,b) => (a-b));
+
+
+    console.log(arr_1);
+    console.log(arr_2);
+
+    console.log(arr_1 === arr_2); // true
+
+    const arr_3 = [100,51,13,22,41];
+
+    const arr_4 = arr_3.slice().sort((a,b) => (b-a)); // b-a sorts in descending
+
+    console.log(arr_3);
+    console.log(arr_4);
+
+    // &&, || , ?? , ?
+
+    console.log(1 && "Should Get Printed");
+
+    console.log(0 && "Should Not Get Printed");
+
+    console.log(undefined && "Should Not Get Printed");
+
+    console.log(0 || "Should Get Printed");
+
+    console.log(undefined || "Should Get Printed");
+
+    console.log(1 || "Should Not Get Printed");
+
+
+    const temperature = 0;
+
+    const currentTemperature = temperature || 'no-data';
+
+    console.log(currentTemperature);
+
+    /*
+     The currentTemperature prints no-data, however 0 degree is a valid temperature.
+     Hence, instead of || operator, use nullish coalesce operator ??
+     
+     the nullish coalesce checks for undefined/null values only
+    */
+
+     const currentTemp = temperature ?? 'no-data';
+     console.log(currentTemp);
+
+     console.log(undefined ?? 'should get printed')
+
+     console.log(0 ?? 'should not get printed')
+
+     
+
+
+
+
+
+
+    
+
+
+
+
+
+
 
