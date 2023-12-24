@@ -144,14 +144,14 @@ const data = [
   }
 
 
-  // Destructuring Objects And Array
+  // 1. Destructuring Objects And Array
 
   const book = getBook(5);
-  book;
-  // The below is the usual way to read object properties
-  // const title = book.title;
-  // const author = book.author;
-  // console.log(title, author);
+  /* The below is the usual way to read object properties
+     const title = book.title;
+     const author = book.author;
+     console.log(title, author);
+  */ 
 
   // ES-6 way to destructure
   const {title, author, pages, genres, id} = book;
@@ -165,13 +165,57 @@ const data = [
 
   console.log(primaryGenre, secondaryGenre);
 
-  // Rest Operator
+  // 2. Rest Operator
   // copies the rest of the elements as an array to a new variable
   const [firstGenre, secondGenre, ...otherGenres] = genres;
   console.log(otherGenres, primaryGenre);
 
-  // will not work
-  // A rest element must be the last in the destructuring pattern
-  //const [firstGenre, ...otherGenres, secondGenre] = genres;
-  
+  /* will not work
+    A rest element must be the last in the destructuring pattern
+    const [firstGenre, ...otherGenres, secondGenre] = genres;
+  */
+
+  // 3. Spread Operator
+
+  /*
+    copies array or object
+  */
+
+  const updatedGenre = [genres, 'action'];
+  console.log(updatedGenre);
+
+  /*
+  The above results in an array inside and array : [ [ 'fantasy', 'high-fantasy', 'novel', 'fantasy fiction' ],
+  'action' ]
+
+  Hence, to avoid this, spread operator can be used to copy the existing genre to a new updated genre array.
+  */
+
+  const updatedGenreUsingSpread = [...genres, 'action'];
+  console.log(updatedGenreUsingSpread); // [ 'fantasy', 'high-fantasy', 'novel', 'fantasy fiction', 'action' ]
+
+  /*
+    For objects, spread operator can be used to copy existing object, add a new property to an object 
+    or update and existing property in the object.
+    
+    Without Spread Operator : 
+    const updatedBook = {book, 'hardcover': 89 }
+
+    The updatedBook will contain the book object as a whole(association) instead of copying the properties individually
+
+    updatedBook = {book : {id...}, 'hardcover': 89};
+  */
+
+  const updatedBook = {...book, 'hardcover': 89 };
+  console.log(updatedBook);
+
+  /*
+    Updating a property in the object, the spread operator should be first , else property will not 
+    be overriden
+
+    const bookWithUpdatedPages = { 'pages': 890, ...book, }; will not update the number of pages
+  */
+
+    const bookWithUpdatedPages = { ...book, 'pages': 890 }; 
+    console.log(bookWithUpdatedPages);
 
