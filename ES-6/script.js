@@ -154,7 +154,7 @@ const data = [
   */ 
 
   // ES-6 way to destructure
-  const {title, author, pages, genres, id} = book;
+  const {title, author, pages, genres, id, publicationDate} = book;
   
   console.log(title, author);
   console.log(genres);
@@ -218,4 +218,18 @@ const data = [
 
     const bookWithUpdatedPages = { ...book, 'pages': 890 }; 
     console.log(bookWithUpdatedPages);
+
+    // 3. Template Literals
+
+    console.log(title);
+    const summary = `The name of the book is : ${title} and published in ${publicationDate.split('-')[0]} `;
+    console.log(summary);
+
+    // 4. Arrow Function
+
+    const splitFuncn = (str) => str.split('-');
+    console.log(splitFuncn(publicationDate));
+
+
+    // 
 
