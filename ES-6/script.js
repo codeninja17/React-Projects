@@ -351,8 +351,32 @@ const data = [
      console.log(undefined ?? 'should get printed')
 
      console.log(0 ?? 'should not get printed')
+     
+     // Promises, async-await
+    
+     /*
+     fetch('https://jsonplaceholder.typicode.com/todos/1')
+     .then((res) => res.json())
+     .then((data) => console.log(data))
+     console.log('Hi')
+     */
+
+     const promise = fetch('https://dummyjson.com/products/1')
+     
+     promise.then(response => {
+       response.json()
+       .then(data => console.log(data))
+     }, reject => {
+        console.error(reject.message);
+     });
+     console.log('Hello');
 
      
+
+
+
+
+
 
 
 
