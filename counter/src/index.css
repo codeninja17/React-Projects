@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+
+.CountersContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.Counter {
+  margin: 5px 15px;
+}
