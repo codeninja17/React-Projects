@@ -156,19 +156,23 @@ const data = [
   // ES-6 way to destructure
   const {title, author, pages, genres, id, publicationDate} = book;
   
-  console.log(title, author);
-  console.log(genres);
-  console.log(pages);
+  console.log('📚 Destructured book details:', { title, author });
+  console.log('📑 Book genres:', genres);
+  console.log('📄 Number of pages:', pages);
 
   // Array
   const [primaryGenre, secondaryGenre] = genres;
 
-  console.log(primaryGenre, secondaryGenre);
+  console.log('🏷️ Primary and secondary genres:', { primaryGenre, secondaryGenre });
 
   // 2. Rest Operator
   // copies the rest of the elements as an array to a new variable
   const [firstGenre, secondGenre, ...otherGenres] = genres;
-  console.log(otherGenres, primaryGenre);
+  console.log('📚 Genre breakdown:', {
+    firstGenre,
+    secondGenre,
+    remainingGenres: otherGenres
+  });
 
   /* will not work
     A rest element must be the last in the destructuring pattern
@@ -182,7 +186,7 @@ const data = [
   */
 
   const updatedGenre = [genres, 'action'];
-  console.log(updatedGenre);
+  console.log('📋 Updated genres array (nested):', updatedGenre);
 
   /*
   The above results in an array inside and array : [ [ 'fantasy', 'high-fantasy', 'novel', 'fantasy fiction' ],
@@ -192,7 +196,7 @@ const data = [
   */
 
   const updatedGenreUsingSpread = [...genres, 'action'];
-  console.log(updatedGenreUsingSpread); // [ 'fantasy', 'high-fantasy', 'novel', 'fantasy fiction', 'action' ]
+  console.log('📋 Updated genres array (spread):', updatedGenreUsingSpread);
 
   /*
     For objects, spread operator can be used to copy existing object, add a new property to an object 
@@ -207,7 +211,7 @@ const data = [
   */
 
   const updatedBook = {...book, 'hardcover': 89 };
-  console.log(updatedBook);
+  console.log('📚 Book with hardcover:', { hardcover: updatedBook.hardcover });
 
   /*
     Updating a property in the object, the spread operator should be first , else property will not 
@@ -216,19 +220,20 @@ const data = [
     const bookWithUpdatedPages = { 'pages': 890, ...book, }; will not update the number of pages
   */
 
+    console.log('📄 Pages before update:', book.pages);
     const bookWithUpdatedPages = { ...book, 'pages': 890 }; 
-    console.log(bookWithUpdatedPages);
+    console.log('📄 Pages after update:', bookWithUpdatedPages.pages);
 
     // 3. Template Literals
 
-    console.log(title);
+    console.log('📖 Book title:', title);
     const summary = `The name of the book is : ${title} and published in ${publicationDate.split('-')[0]} `;
-    console.log(summary);
+    console.log('📖 Book summary:', summary);
 
     // 4. Arrow Function
 
     const splitFuncn = (str) => str.split('-');
-    console.log(splitFuncn(publicationDate));
+    console.log('📅 Split publication date:', splitFuncn(publicationDate));
 
 
     // 5. 
@@ -241,17 +246,17 @@ const data = [
 
     const doubledArr = arr.map((num) => num * 2)
 
-    console.log(doubledArr);
+    console.log('🔢 Doubled numbers:', doubledArr);
 
     const books = getBooks();
 
     const bookTitles = books.map((book) => book.title);
 
-    console.log(bookTitles);
+    console.log('📚 All book titles:', bookTitles);
 
     const updatedBookSeller = books.map((book) => ({...book, seller: 'Amazon'}));
 
-    console.log(updatedBookSeller);
+    console.log('🏪 Books with seller info:', updatedBookSeller);
 
     const essentialData = books.map((book) => {
         return {
@@ -260,37 +265,37 @@ const data = [
         }
     });
 
-    console.log(essentialData);
+    console.log('📊 Essential book data:', essentialData);
 
     const essentialData1 = books.map((book) => ({
             pages: book.pages,
             seller: 'Flipkart'
     }));
 
-    console.log(essentialData1);
+    console.log('📊 Essential book data (concise):', essentialData1);
     
     // filter
     const booksWithPagesGreaterThanThousand = books.filter((book) =>  book.pages > 1000);
 
-    console.log(booksWithPagesGreaterThanThousand);
+    console.log('📚 Books with >1000 pages:', booksWithPagesGreaterThanThousand);
 
     const booksWithFantasyGenre = books.filter((book) => book.genres.includes('fantasy') && book.pages < 1000);
 
-    console.log(booksWithFantasyGenre);
+    console.log('🧙‍♂️ Fantasy books <1000 pages:', booksWithFantasyGenre);
 
     const booksWithFantasyGenre1 = books.filter((book) => book.genres.includes('fantasy'))
                                        .filter((book) => book.pages > 1000);
-    console.log(booksWithFantasyGenre1);
+    console.log('🧙‍♂️ Fantasy books >1000 pages:', booksWithFantasyGenre1);
 
     const bookTitlesWithPageLessThanThousand = books.filter((book) => book.pages < 1000)
                                                     .map((book) => book.title);
     
-    console.log(bookTitlesWithPageLessThanThousand);
+    console.log('📑 Titles of books <1000 pages:', bookTitlesWithPageLessThanThousand);
 
     // reduce
 
     const sumOfPages = books.reduce((sum, book) => sum + book.pages, 0);
-    console.log(sumOfPages);
+    console.log('📊 Total pages of all books:', sumOfPages);
 
     // sort
 
@@ -305,38 +310,36 @@ const data = [
     const arr_2 = arr_1.sort((a,b) => (a-b));
 
 
-    console.log(arr_1);
-    console.log(arr_2);
-
-    console.log(arr_1 === arr_2); // true
+    console.log('⬆️ Original array 1:', arr_1);
+    console.log('⬆️ Sorted array 2:', arr_2);
 
     const arr_3 = [100,51,13,22,41];
 
     const arr_4 = arr_3.slice().sort((a,b) => (b-a)); // b-a sorts in descending
 
-    console.log(arr_3);
-    console.log(arr_4);
+    console.log('🔄 Original array 3:', arr_3);
+    console.log('⬇️ Sorted array 4 (descending):', arr_4);
 
     // &&, || , ?? , ?
 
-    console.log(1 && "Should Get Printed");
+    console.log('🔍 AND operator (truthy):', 1 && "Should Get Printed");
 
-    console.log(0 && "Should Not Get Printed");
+    console.log('🔍 AND operator (falsy):', 0 && "Should Not Get Printed");
 
-    console.log(undefined && "Should Not Get Printed");
+    console.log('🔍 AND operator (undefined):', undefined && "Should Not Get Printed");
 
-    console.log(0 || "Should Get Printed");
+    console.log('🔍 OR operator (falsy first):', 0 || "Should Get Printed");
 
-    console.log(undefined || "Should Get Printed");
+    console.log('🔍 OR operator (undefined first):', undefined || "Should Get Printed");
 
-    console.log(1 || "Should Not Get Printed");
+    console.log('🔍 OR operator (truthy first):', 1 || "Should Not Get Printed");
 
 
     const temperature = 0;
 
     const currentTemperature = temperature || 'no-data';
 
-    console.log(currentTemperature);
+    console.log('🌡️ Temperature with OR:', currentTemperature);
 
     /*
      The currentTemperature prints no-data, however 0 degree is a valid temperature.
@@ -346,11 +349,11 @@ const data = [
     */
 
      const currentTemp = temperature ?? 'no-data';
-     console.log(currentTemp);
+     console.log('🌡️ Temperature with nullish coalesce:', currentTemp);
 
-     console.log(undefined ?? 'should get printed')
+     console.log('🔍 Nullish coalesce (undefined):', undefined ?? 'should get printed')
 
-     console.log(0 ?? 'should not get printed')
+     console.log('🔍 Nullish coalesce (zero):', 0 ?? 'should not get printed')
      
      // Promises, async-await
     
